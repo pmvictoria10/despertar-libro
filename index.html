@@ -122,6 +122,8 @@
   --shadow:0 24px 48px -16px rgba(0,0,0,.85);
   --t-fast:.18s; --t-mid:.3s;
   --w:1120px;
+  --book-h:calc(100vh - 150px);
+  --book-h:calc(100svh - 150px);
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -164,7 +166,7 @@ a:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offs
 
 /* 1 hero */
 .hero{padding:var(--s-8) 0 var(--s-9)}
-.hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:var(--s-8);align-items:center}
+.hero .wrap{display:grid;grid-template-columns:1fr auto;gap:var(--s-8);align-items:center}
 .hero h1{font-size:var(--fs-8);line-height:1.02;letter-spacing:-.02em}
 .hero h1 em{display:block;color:var(--gold);font-style:italic}
 .hero .by{font:italic 500 var(--fs-5)/1.3 var(--f-display);color:var(--ink-muted);margin:var(--s-3) 0 0}
@@ -178,7 +180,7 @@ a:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offs
 .facts{display:flex;flex-wrap:wrap;gap:var(--s-2) var(--s-5);list-style:none;padding:0;margin:0 0 var(--s-6);font-size:var(--fs-2);color:var(--ink-muted)}
 .facts li{display:flex;align-items:center;gap:var(--s-2)}
 .facts li::before{content:"";width:6px;height:6px;background:var(--gold);transform:rotate(45deg)}
-.hero .cover img{width:100%;max-width:400px;margin-left:auto;border-radius:var(--r-1);box-shadow:var(--shadow);animation:enter .9s ease-out both}
+.hero .cover img{width:min(calc(var(--book-h) * .64), 42vw);max-width:none;margin:0 auto;border-radius:var(--r-1);box-shadow:var(--shadow);animation:enter .9s ease-out both}
 .hero .copy{animation:enter .7s ease-out both}
 @keyframes enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
@@ -255,8 +257,8 @@ a:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offs
 
 /* 8 close + footer */
 .close{border-top:1px solid var(--line)}
-.close .cta{display:grid;grid-template-columns:auto 1fr;gap:var(--s-8);align-items:center;max-width:880px;margin:0 auto var(--s-9)}
-.close .cta img{width:200px;border-radius:var(--r-1);box-shadow:var(--shadow)}
+.close .cta{display:grid;grid-template-columns:auto 1fr;gap:var(--s-8);align-items:center;max-width:var(--w);margin:0 auto var(--s-9)}
+.close .cta img{width:min(calc(var(--book-h) * .64), 42vw);border-radius:var(--r-1);box-shadow:var(--shadow)}
 .close .cta p{font-size:var(--fs-3)}
 .help{border-top:1px solid var(--line);padding-top:var(--s-6);font-size:var(--fs-1);line-height:1.7;color:var(--ink-muted)}
 .help strong{color:var(--ink)}
@@ -269,7 +271,10 @@ a:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offs
   :root{--pad:var(--s-8); --fs-8:52px; --fs-7:40px}
   .hero .wrap,.problem .wrap,.tools .wrap:first-child,.story .wrap,.author .wrap,.method .head{grid-template-columns:1fr;gap:var(--s-6)}
   .hero{padding:var(--s-7) 0 var(--s-8)}
-  .hero .wrap{grid-template-columns:1fr 220px;gap:var(--s-6);align-items:start}
+  .hero .wrap{grid-template-columns:1fr;gap:var(--s-6);align-items:start}
+  .hero .cover{order:-1}
+  .hero .cover img,.close .cta img{width:min(calc(var(--book-h) * .64), 88vw);margin:0 auto}
+  .close .cta{grid-template-columns:1fr;text-align:center;gap:var(--s-6)}
   .chapters{grid-template-columns:1fr 1fr}
   .chapters li,.chapters li + li{padding:var(--s-5) 0;border-left:0;border-bottom:1px solid var(--line-light)}
   .chapters li:nth-child(odd){padding-right:var(--s-5)}
@@ -287,8 +292,6 @@ a:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offs
   .bar .btn{display:none}
   .hero{padding:var(--s-6) 0 var(--s-7)}
   .hero .wrap{grid-template-columns:1fr;gap:var(--s-5)}
-  .hero .cover{order:-1}
-  .hero .cover img{max-width:190px;margin:0 auto}
   .hero .copy{text-align:center}
   .hero .sub{font-size:var(--fs-3);margin:var(--s-4) auto}
   .facts{justify-content:center;font-size:var(--fs-1);margin-bottom:var(--s-5)}
@@ -312,7 +315,6 @@ a:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offs
   .fit .cols{grid-template-columns:1fr;gap:var(--s-7)}
   .social a{flex:1 1 30%;justify-content:center;padding:0 var(--s-2)}
   .close .cta{grid-template-columns:1fr;text-align:center;gap:var(--s-5);margin-bottom:var(--s-8)}
-  .close .cta img{width:150px;margin:0 auto}
   footer{padding-bottom:var(--s-9)}
   .buybar{display:flex;position:fixed;inset:auto 0 0 0;z-index:30;align-items:center;gap:var(--s-3);padding:var(--s-3) var(--gut) calc(var(--s-3) + env(safe-area-inset-bottom));background:var(--g-dark-2);border-top:1px solid var(--line);transform:translateY(110%);transition:transform var(--t-mid)}
   .buybar.show{transform:none}
@@ -356,7 +358,7 @@ a:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offs
       <p class="proof">Nace de <b>Mi Mejor Versión</b>, la comunidad de cientos de miles de personas que Pedro creó en YouTube, TikTok y Facebook.</p>
     </div>
     <div class="cover">
-      <img src="img/portada-800.jpg" srcset="img/portada-480.jpg 480w, img/portada-800.jpg 800w" sizes="(max-width:640px) 190px, (max-width:960px) 220px, 400px" alt="Portada del libro: un filósofo estoico sentado en un trono, en negro y dorado" width="800" height="1250" fetchpriority="high">
+      <img src="img/portada-800.jpg" srcset="img/portada-480.jpg 480w, img/portada-800.jpg 800w, img/portada-1200.jpg 1200w" sizes="(max-width:960px) 88vw, 42vw" alt="Portada del libro: un filósofo estoico sentado en un trono, en negro y dorado" width="800" height="1250" fetchpriority="high">
     </div>
   </div>
 </section>
@@ -501,7 +503,7 @@ a:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offs
 <section class="close" id="comprar">
   <div class="wrap">
     <div class="cta">
-      <img src="img/portada-480.jpg" alt="Portada de El despertar de tu mejor versión" width="480" height="750" loading="lazy">
+      <img src="img/portada-800.jpg" srcset="img/portada-480.jpg 480w, img/portada-800.jpg 800w, img/portada-1200.jpg 1200w" sizes="(max-width:960px) 88vw, 42vw" alt="Portada de El despertar de tu mejor versión" width="800" height="1250" loading="lazy">
       <div>
         <h2>Empieza hoy a escribir una historia nueva</h2>
         <p>Imagina despertar sabiendo qué vas a hacer hoy y por qué. Ese cambio no empieza con más motivación, sino con un sistema distinto.</p>
