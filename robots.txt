@@ -1,0 +1,15 @@
+# Buscadores e IAs de búsqueda: acceso permitido para que el libro aparezca y se cite
+User-agent: *
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
